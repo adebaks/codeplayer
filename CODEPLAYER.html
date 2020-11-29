@@ -1,0 +1,169 @@
+
+<!-- saved from url=(0073)file:///C:/Users/adebabalola/Desktop/complete%20web%20developer/java.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Javascript</title>
+		<script src="file:///C:/Users/ademola/Desktop/jquery/jquery-3.5.1.js"></script>
+		
+		<script src="file:///C:/Users/ademola/Desktop/jquery-ui/jquery-ui.js"></script>
+			
+
+		<link href="file:///C:/Users/ademola/Desktop/jquery-ui/jquery-ui.css" rel="stylesheet">
+		
+		<style type="text/css">
+		body{
+		width:100%;
+		height:100%;
+		margin:0;
+		padding:0;
+		}
+		#topBar{
+			background-color:"#EEEEEE";
+			height:40px;
+			width:100%
+		}
+			#buttonCase{
+				width:550px;
+				margin:0 auto;
+				}
+		.same{
+			margin:0;
+			padding:0;
+			float:left;
+			position:relative;
+		}
+		#image{
+		font-weight:bold;
+		
+		}
+		#topText{
+			margin-right:400px;
+			font-size:20px;
+			margin-top:0;
+		}
+		.myButton{
+			margin-top:10px;
+			border-radius:5px;
+			width:100px;
+			
+			}
+		#htmlText  {
+			
+			resize:none;
+			margin-left:50px;
+			}
+		  
+		.active{
+		background-color:#E8F2FF;
+		}
+		.highlighted{
+		background-color:grey;
+		}
+		.slide{
+		float:left;
+		width:300px;
+		height:100%;
+		resize:none;
+		
+		}
+		
+		#outputText{
+		float:left;
+		}
+		.hide{
+		display:none;
+		}
+		
+		
+			
+		</style>
+	</head>
+
+
+	
+<body>
+	<div id="topBar">
+		<div id="image" class="same">CODE PLAYER</div>
+			<div id="buttonCase">
+				<div id="html" class="same"><button class="myButton active" id="htmlButton">HTML</button></div>
+				<div id="css" class="same"><button class="myButton active" id="cssButton">CSS</button></div>
+				<div id="javaScript" class="same"><button class="myButton active" id="javaScriptButton">javaScript</button></div>
+				<div id="output" class="same"><button class="myButton active" id="outputButton">Output</button></div>
+			</div>
+	</div>
+			
+	<div id="htmlCode"> 
+		<textarea id="htmlText" class="slide" style="height: 615px;">&lt;p id="paragraph"&gt;hello there&lt;/p&gt;</textarea>
+		<textarea id="cssText" class="slide" style="height: 615px;">p {color:green;}</textarea>
+		<textarea id="javaScriptText" class="slide" style="height: 615px;">document.getElementById("paragraph").
+		innerHTML="work done";</textarea>
+		<iframe id="outputText" class="slide" style="height: 611px;"></iframe>
+	</div>
+	
+	
+	
+	
+
+
+
+
+
+
+ <script type="text/javascript">
+ function outputLoad(){
+	$("iframe").contents().find("html").html("<html><head><style type='text/css'>" + $("#cssText").val() + "</style></head><body>" + $("#htmlText").val() + "</body></html>");
+		document.getElementById("outputText").contentWindow.eval($("#javaScriptText").val()); //this code evaluate js written in the js window into the iframe//
+	};
+ $(".myButton").hover(function(){
+	$(this).addClass("highlighted");
+		},function(){
+	$(this).removeClass("highlighted");
+});
+	$(".myButton").click(function(){
+		$(this).toggleClass("active");
+		$(this).removeClass("highlighted");
+		
+		
+		});
+			$("#htmlbutton").click(function(){
+			$("#htmlText").toggle();
+		var openedSlide = 4 - $(".slide").length;
+	 $(".slide").width($(window).width() / openedSlide)	
+			
+			});
+		
+	$(".slide").height($(window).height() - $("#topBar").height()-50);
+	 
+	/*this code below updates the iframe with the text pit in the html text area as a live html file
+	$("iframe").contents().find("html").html($("#htmlText").val());*/
+	
+	outputLoad();
+	
+	/*the code below updates the output as the textarea is filled with text without page refresh
+	the code is updated and processed as a live html file i.e updating it with the correct properties.*/
+	$("textarea").on("change keyup paste", function(){
+		outputLoad();
+	
+	});
+	
+	$("#cssButton").click(function(){
+		$("#cssText").toggleClass("hide");
+		});
+		
+	$("#htmlButton").click(function(){
+		$("#htmlText").toggleClass("hide");
+		});
+		
+	$("#javaScriptButton").click(function(){
+		$("#javaScriptText").toggleClass("hide");
+		});
+		
+	$("#outputButton").click(function(){
+		$("#outputText").toggleClass("hide");
+		});
+	
+		
+	</script>
+
+
+</body>
+</html>
